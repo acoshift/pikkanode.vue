@@ -1,10 +1,27 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import api from './api'
+import Home from './views/Home'
 
 Vue.use(Router)
 
-export default new Router({
+const signedInGuard = (to, from, next) => {
+	if (!to.meta.isAuth) {
+		next({ name: 'auth.signIn' })
+		return
+	}
+	next()
+}
+
+const anonymouseGuard = (to, from, next) => {
+	if (to.meta.isAuth) {
+		next({ name: 'home' })
+		return
+	}
+	next()
+}
+
+const router = new Router({
 	mode: 'history',
 	base: process.env.BASE_URL,
 	routes: [
@@ -14,12 +31,44 @@ export default new Router({
 			component: Home
 		},
 		{
-			path: '/about',
-			name: 'about',
-			// route level code-splitting
-			// this generates a separate chunk (about.[hash].js) for this route
-			// which is lazy-loaded when the route is visited.
-			component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+			path: '/auth/sign-in',
+			name: 'auth.signIn',
+			component: () => import('./views/auth/SignIn'),
+			beforeEnter: anonymouseGuard
+		},
+		{
+			path: '/auth/sign-up',
+			name: 'auth.signUp',
+			component: () => import('./views/auth/SignUp'),
+			beforeEnter: anonymouseGuard
+		},
+		{
+			path: '/auth/sign-out',
+			name: 'auth.signOut',
+			component: () => import('./views/auth/SignOut')
+		},
+		{
+			path: '/me/profile',
+			name: 'me.profile',
+			component: () => import('./views/me/Profile'),
+			beforeEnter: signedInGuard
+		},
+		{
+			path: '*',
+			redirect: '/'
 		}
 	]
 })
+
+router.beforeEach((to, from, next) => {
+	api.auth.check()
+		.then((resp) => {
+			to.meta.isAuth = resp.result.ok
+			next()
+		})
+		.catch(() => {
+			next()
+		})
+})
+
+export default router
