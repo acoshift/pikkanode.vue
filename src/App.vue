@@ -6,7 +6,7 @@
             </router-link>
 			<div>
                 <router-link :to="{ name: 'me.profile' }">Profile</router-link>
-                <button @click="signOut">Sign Out</button>
+                <span @click="signOut">Sign Out</span>
             </div>
 		</nav>
 		<nav v-else>
@@ -77,14 +77,15 @@ export default {
             margin-left: 0px;
         }
 
-        div a {
+        div > * {
             color: white;
             text-decoration: none;
             margin-left: 1.5rem;
             font-weight: 500;
+            cursor: pointer;
         }
 
-        div a:hover {
+        div > *:hover {
             color: rgb(236, 236, 236);
         }
     }
