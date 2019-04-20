@@ -40,6 +40,8 @@ work.get = ({ id }) =>
 	invoke('/work/get', { id })
 work.postComment = ({ id, content }) =>
 	invoke('/work/postComment', { id, content })
+work.favorite = ({ id, favorite }) =>
+	invoke('/work/favorite', { id, favorite })
 
 const discovery = {}
 discovery.getWorks = ({ paginate }) =>

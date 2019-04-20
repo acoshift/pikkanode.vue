@@ -4,7 +4,7 @@
 
 		<div class="photo-container">
 			<img v-if="photo" class="photo" :src="photo">
-			<div class="favorite" :class="{ active: isFavorite }">
+			<div class="favorite" :class="{ active: isFavorite }" @click="favorite">
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>
 			</div>
 		</div>
@@ -56,7 +56,8 @@ export default {
 			createdAt: '',
 			comments: [],
 			comment: '',
-			isFavorite: false
+			isFavorite: false,
+			isSaving: false
 		}
 	},
 	created () {
@@ -79,9 +80,15 @@ export default {
 					this.createdAt = resp.result.createdAt
 					this.comments = resp.result.comments
 					this.isFavorite = resp.result.isFavorite
+					this.isSaving = false
 				})
 		},
 		submitComment () {
+			if (this.isSaving) {
+				return
+			}
+
+			this.isSaving = true
 			this.$api.work.postComment({ id: `${this.$route.params.id}`, content: this.comment })
 				.then((resp) => {
 					if (!resp.ok) {
@@ -91,6 +98,31 @@ export default {
 
 					this.comment = ''
 					this.reload()
+				})
+				.catch((e) => {
+					this.isSaving = false
+					alert(e.message)
+				})
+		},
+		favorite () {
+			if (this.isSaving) {
+				return
+			}
+
+			this.isSaving = true
+			this.$api.work.favorite({ id: `${this.$route.params.id}`, favorite: !this.isFavorite })
+				.then((resp) => {
+					if (!resp.ok) {
+						alert(resp.error.message)
+						return
+					}
+
+					this.isFavorite = !this.isFavorite
+					this.isSaving = false
+				})
+				.catch((e) => {
+					this.isSaving = false
+					alert(e.message)
 				})
 		}
 	}
