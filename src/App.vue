@@ -157,7 +157,8 @@ export default {
 	/**
 	* Element
 	***************************************/
-	input {
+	input,
+	textarea {
 		-webkit-appearance: none;
 		-moz-appearance: none;
 		appearance: none;
@@ -186,6 +187,11 @@ export default {
 			border-color: hsl(227, 62%, 42%);
 			box-shadow: 0 0 0 .175rem hsl(227, 62%, 89%);
 		}
+	}
+
+	textarea {
+		padding: .5rem;
+		height: auto;
 	}
 
 	// button

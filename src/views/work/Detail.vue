@@ -31,11 +31,12 @@
 			</div>
 		</div>
 		<p v-else>this photo doesn't have any comment</p>
+		<br>
 
 		<!-- comment section -->
 		<form @submit.prevent="submitComment">
 			<textarea v-model="comment" placeholder="type to comment..."></textarea>
-			<button>post</button>
+			<button class="post-button">post</button>
 		</form>
 	</div>
 </template>
@@ -130,5 +131,10 @@ export default {
 				opacity: .5;
 			}
 		}
+	}
+
+	.post-button {
+		margin-left: auto;
+		margin-top: 1rem;
 	}
 </style>
