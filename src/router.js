@@ -54,6 +54,11 @@ const router = new Router({
 			beforeEnter: signedInGuard
 		},
 		{
+			path: '/work/:id',
+			name: 'work.get',
+			component: () => import('./views/work/Detail')
+		},
+		{
 			path: '*',
 			redirect: '/'
 		}
