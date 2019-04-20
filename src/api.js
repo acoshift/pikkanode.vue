@@ -28,6 +28,10 @@ me.uploadProfilePhoto = (photo) => {
 	form.append('photo', photo)
 	return invoke('/me/uploadProfilePhoto', form)
 }
+me.getMyWorks = ({ paginate }) =>
+	invoke('/me/getMyWorks', { paginate })
+me.getMyFavoriteWorks = ({ paginate }) =>
+	invoke('/me/getMyFavoriteWorks', { paginate })
 
 const api = {
 	auth,

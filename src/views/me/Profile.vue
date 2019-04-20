@@ -8,6 +8,35 @@
 		</div>
 		<input ref="upload" type="file" style="display: none" @change="upload">
 		{{ username }}
+
+		<h1>
+			<span @click="tab = 'myWorks'">My Works</span> |
+			<span @click="tab = 'myFavoriteWorks'">My Favorite Works</span>
+		</h1>
+		<div v-if="tab === 'myWorks'">
+			<div v-if="myWorks.length > 0">
+				<div v-for="w in myWorks" :key="w.id">
+					<img class="photo" :src="w.photo" height="200">
+					<p>name: {{ w.name }}</p>
+					<p>detail: {{ w.detail }}</p>
+					<p>tags: {{ w.tags.join(',') }}</p>
+					<p>post at: {{ w.createdAt }}</p>
+				</div>
+			</div>
+			<p v-else>You don't have any works</p>
+		</div>
+		<div v-else>
+			<div v-if="myFavoriteWorks.length > 0">
+				<div v-for="work in myFavoriteWorks" :key="work.id">
+					<img class="photo" :src="work.photo" height="200">
+					<p>name: {{ w.name }}</p>
+					<p>detail: {{ w.detail }}</p>
+					<p>tags: {{ w.tags.join(',') }}</p>
+					<p>post at: {{ w.createdAt }}</p>
+				</div>
+			</div>
+			<p v-else>You don't have any works</p>
+		</div>
 	</div>
 </template>
 
@@ -17,11 +46,16 @@ export default {
 	data () {
 		return {
 			username: '',
-			photo: ''
+			photo: '',
+			myWorks: [],
+			myFavoriteWorks: [],
+			tab: 'myWorks'
 		}
 	},
 	created () {
 		this.reload()
+		this.fetchMyWorks()
+		this.fetchMyFavoriteWorks()
 	},
 	methods: {
 		reload () {
@@ -50,6 +84,38 @@ export default {
 						return
 					}
 					this.reload()
+				})
+		},
+		fetchMyWorks () {
+			this.$api.me.getMyWorks({
+				paginate: {
+					page: 1,
+					perPage: 20
+				}
+			})
+				.then((resp) => {
+					if (!resp.ok) {
+						alert(resp.error.message)
+						return
+					}
+
+					this.myWorks = resp.result.list
+				})
+		},
+		fetchMyFavoriteWorks () {
+			this.$api.me.getMyFavoriteWorks({
+				paginate: {
+					page: 1,
+					perPage: 20
+				}
+			})
+				.then((resp) => {
+					if (!resp.ok) {
+						alert(resp.error.message)
+						return
+					}
+
+					this.myFavoriteWorks = resp.result.list
 				})
 		}
 	}
