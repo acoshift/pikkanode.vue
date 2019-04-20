@@ -222,4 +222,42 @@ export default {
             background-color: hsl(350, 99%, 62%);
         }
     }
+
+    // Link
+    .link {
+        text-decoration: none;
+
+        color: hsl(216, 15%, 26%);
+
+        cursor: pointer;
+        outline: none;
+        transition: all 160ms ease-in-out;
+
+        svg, path {
+            transition: fill 160ms ease-in-out;
+            fill: hsl(216, 15%, 26%);
+        }
+
+        &:before, &:after {
+            pointer-events: none;
+            backface-visibility: hidden;
+        }
+
+        &:hover, &:focus, &.-active {
+            color: hsl(227, 70%, 49%);
+
+            svg, path {
+                fill: hsl(227, 70%, 49%);
+            }
+        }
+
+        &.active {
+            color: hsl(227, 70%, 49%);
+        }
+    }
+
+    hr {
+        opacity: .3;
+        margin: 1rem 0;
+    }
 </style>
