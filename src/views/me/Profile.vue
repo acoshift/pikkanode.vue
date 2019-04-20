@@ -23,8 +23,8 @@
             <br>
 
             <div v-if="tab === 'myPhotos'" class="photo-container">
-                <template v-if="myPhotos.length > 0">
-                    <div v-for="w in myPhotos" :key="w.id" class="card-photo">
+                <template v-if="myWorks.length > 0">
+                    <div v-for="w in myWorks" :key="w.id" class="card-photo">
                         <img class="photo" :src="w.photo" height="200">
                         <p>name: {{ w.name }}</p>
                         <p>detail: {{ w.detail }}</p>
@@ -35,9 +35,9 @@
                 <p v-else>You don't have any photos</p>
             </div>
             <div v-else>
-                <div v-if="myFavoritePhotos.length > 0">
-                    <div v-for="photo in myFavoritePhotos" :key="photo.id">
-                        <img class="photo" :src="photo.photo" height="200">
+                <div v-if="myFavoriteWorks.length > 0">
+                    <div v-for="w in myFavoriteWorks" :key="w.id">
+                        <img class="photo" :src="w.photo" height="200">
                         <p>name: {{ w.name }}</p>
                         <p>detail: {{ w.detail }}</p>
                         <p>tags: {{ w.tags.join(',') }}</p>
@@ -57,15 +57,15 @@ export default {
 		return {
 			username: '',
 			photo: '',
-			myPhotos: [],
-			myFavoritePhotos: [],
+			myWorks: [],
+			myFavoriteWorks: [],
 			tab: 'myPhotos'
 		}
 	},
 	created () {
 		this.reload()
-		this.fetchMyPhotos()
-		this.fetchMyFavoritePhotos()
+		this.fetchMyWorks()
+		this.fetchMyFavoriteWorks()
 	},
 	methods: {
 		reload () {
@@ -96,7 +96,7 @@ export default {
 					this.reload()
 				})
 		},
-		fetchMyPhotos () {
+		fetchMyWorks () {
 			this.$api.me.getMyWorks({
 				paginate: {
 					page: 1,
@@ -109,11 +109,11 @@ export default {
 						return
 					}
 
-					this.myPhotos = resp.result.list
+					this.myWorks = resp.result.list
 				})
 		},
-		fetchMyFavoritePhotos () {
-			this.$api.me.getMyFavoritePhotos({
+		fetchMyFavoriteWorks () {
+			this.$api.me.getMyFavoriteWorks({
 				paginate: {
 					page: 1,
 					perPage: 20
@@ -125,7 +125,7 @@ export default {
 						return
 					}
 
-					this.myFavoritePhotos = resp.result.list
+					this.myFavoriteWorks = resp.result.list
 				})
 		}
 	}
