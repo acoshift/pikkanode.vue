@@ -53,7 +53,8 @@ export default {
 			username: '',
 			createdAt: '',
 			comments: [],
-			comment: ''
+			comment: '',
+			isFavorite: false
 		}
 	},
 	created () {
@@ -75,6 +76,7 @@ export default {
 					this.username = resp.result.username
 					this.createdAt = resp.result.createdAt
 					this.comments = resp.result.comments
+					this.isFavorite = resp.result.isFavorite
 				})
 		},
 		submitComment () {
