@@ -1,19 +1,24 @@
 <template>
 	<div id="app">
-		<div v-if="isAuth" id="nav">
-			<router-link :to="{ name: 'home' }">Home</router-link>
-			|
-			<router-link :to="{ name: 'me.profile' }">Profile</router-link>
-			|
-			<button @click="signOut">Sign Out</button>
-		</div>
-		<div v-else>
-			<router-link :to="{ name: 'home' }">Home</router-link>
-			|
-			<router-link :to="{ name: 'auth.signIn' }">Sign In</router-link>
-			|
-			<router-link :to="{ name: 'auth.signUp' }">Sign Up</router-link>
-		</div>
+		<nav v-if="isAuth" id="nav">
+			<router-link :to="{ name: 'home' }">
+                <img src="https://github.com/panotza/pikkanode/blob/master/pikkanode.png?raw=true" alt="pickanode">
+            </router-link>
+			<div>
+                <router-link :to="{ name: 'me.profile' }">Profile</router-link>
+                <button @click="signOut">Sign Out</button>
+            </div>
+		</nav>
+		<nav v-else>
+			<router-link :to="{ name: 'home' }">
+                <img src="https://github.com/panotza/pikkanode/blob/master/pikkanode.png?raw=true" alt="pickanode">
+            </router-link>
+            <div>
+                <router-link :to="{ name: 'auth.signIn' }">Sign In</router-link>
+                <router-link :to="{ name: 'auth.signUp' }">Sign Up</router-link>
+            </div>
+		</nav>
+
 		<router-view />
 	</div>
 </template>
@@ -33,3 +38,69 @@ export default {
 	}
 }
 </script>
+
+<style>
+    :root {
+        --navbar-height: 60px;
+    }
+
+    html {
+        font-size: 16px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: var(--navbar-height);
+        padding: 0 1.5rem;
+        background: #2844ad;
+        color: white;
+    }
+
+    nav img {
+        height: calc(var(--navbar-height) - 24px);
+        width: auto;
+        margin-left: 0px;
+    }
+
+    nav div a {
+        color: white;
+        text-decoration: none;
+        margin-left: 1.5rem;
+        font-weight: 500;
+    }
+
+    nav div a:hover {
+        color: rgb(236, 236, 236);
+    }
+
+    .content-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 2rem;
+    }
+
+    .card-work {
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+        max-width: 15rem;
+        text-align: center;
+    }
+
+    .card-work > img {
+        object-fit: contain;
+    }
+</style>
+
