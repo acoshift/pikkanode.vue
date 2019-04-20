@@ -5,12 +5,20 @@
 			<br>
 
 			<div class="profile">
-				<img v-if="photo" class="avatar" :src="photo" height="200" @click="$refs.upload.click()">
+				<div v-if="photo" class="avatar-container">
+					<img class="avatar" :src="photo" height="200" @click="$refs.upload.click()">
+					<a href="#" class="link">Delete Avatar</a>
+				</div>
 				<div v-else class="blank" @click="$refs.upload.click()">
 					<span>Click here to upload</span>
 				</div>
 				<input ref="upload" type="file" style="display: none" @change="upload">
-				<h2>{{ username }}</h2>
+				<div class="info">
+					<h2>{{ username }}</h2>
+					<div>
+						<a href="#" class="link">Edit</a>
+					</div>
+				</div>
 			</div>
 			<hr>
 
@@ -153,8 +161,19 @@ export default {
 			border: 3px dashed rgb(172, 172, 172);
 		}
 
-		h2 {
+		.info {
 			margin-left: 1rem;
+		}
+	}
+
+	.avatar-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		.link {
+			margin-top: .5rem;
+			font-weight: 500;
 		}
 	}
 
