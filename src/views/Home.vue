@@ -22,7 +22,7 @@ export default {
 	components: {},
 	data () {
 		return {
-			discoveryWorks: [],
+			discoveryWorks: []
 		}
 	},
 	created () {
