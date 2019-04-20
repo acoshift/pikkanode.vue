@@ -1,19 +1,33 @@
 <template>
-	<div>
+	<div class="panel">
 		<h1>Photo Detail</h1>
-		<img v-if="photo" class="photo" :src="photo" height="200">
-		<p>name: {{ name }}</p>
-		<p>detail: {{ detail }}</p>
-		<p>tags: {{ tags.join(',') }}</p>
-		<p>poster: {{ username }}</p>
-		<p>post at: {{ createdAt | datetime }}</p>
 
-		<h1>Comments</h1>
-		<div v-if="comments.length > 0">
-			<div v-for="c in comments" :key="c.id">
-				<p>{{ c.content }}</p>
-				<img v-if="photo" class="c.user.photo" :src="photo" height="200">
-				<p>by {{ c.user.username }} post at: {{ c.createdAt | datetime }}</p>
+        <div class="photo-container">
+		    <img v-if="photo" class="photo" :src="photo">
+        </div>
+        <br>
+
+        <p class="detail">
+            <strong>name:</strong> {{ name }} <br>
+            <strong>detail:</strong> {{ detail }} <br>
+            <strong>tags:</strong> {{ tags.join(',') }} <br>
+            <strong>poster:</strong> {{ username }} <br>
+            <strong>post at:</strong> {{ createdAt | datetime }}
+        </p>
+        <hr>
+
+		<h3>Comments</h3>
+		<div v-if="comments.length > 0" class="comment-container">
+			<div v-for="c in comments" :key="c.id" class="comment">
+                <img v-if="photo" class="c.user.photo" :src="photo" height="200">
+                <div>
+                    <a href class="link">
+                        <strong>{{ c.user.username }}</strong>
+                    </a>
+                    <br>
+                    <span class="message">{{ c.content }}</span> <br>
+                    <small class="date">{{ c.createdAt | datetime }}</small>
+                </div>
 			</div>
 		</div>
 		<p v-else>this photo doesn't have any comment</p>
@@ -60,4 +74,43 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    .photo-container {
+        text-align: center;
+
+        img {
+            max-width: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .detail {
+        font-size: 1.2rem;
+    }
+
+    .comment-container {
+        margin-top: 1rem;
+
+        .comment {
+            display: flex;
+
+            &:not(:first-child) {
+                margin-top: 2rem;
+            }
+
+            img {
+                width: 3rem;
+                height: 3rem;
+                border-radius: 999px;
+                margin-right: 0.5rem;
+            }
+
+            .message {
+                line-height: 1.65;
+            }
+
+            .date {
+                opacity: .5;
+            }
+        }
+    }
 </style>
