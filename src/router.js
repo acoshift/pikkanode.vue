@@ -60,6 +60,12 @@ const router = new Router({
 			beforeEnter: signedInGuard
 		},
 		{
+			path: '/me/update-photo/:id',
+			name: 'me.update-photo',
+			component: () => import('./views/me/UpdatePhoto'),
+			beforeEnter: signedInGuard
+		},
+		{
 			path: '/photo/:id',
 			name: 'photo.get',
 			component: () => import('./views/photo/Detail')

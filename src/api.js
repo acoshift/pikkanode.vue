@@ -34,6 +34,8 @@ me.getMyFavoriteWorks = ({ paginate }) =>
 	invoke('/me/getMyFavoriteWorks', { paginate })
 me.removeWork = ({ id }) =>
 	invoke('/me/removeWork', { id })
+me.updateWork = ({ id, name, detail, tags }) =>
+	invoke('/me/updateWork', { id, name, detail, tags })
 
 const work = {}
 work.get = ({ id }) =>

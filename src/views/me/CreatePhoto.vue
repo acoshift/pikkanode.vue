@@ -24,7 +24,7 @@
 
 <script>
 export default {
-	name: 'CreateWork',
+	name: 'CreatePhoto',
 	data () {
 		return {
 			name: '',

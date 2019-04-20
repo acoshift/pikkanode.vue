@@ -69,6 +69,7 @@ export default {
 				.then((resp) => {
 					if (!resp.ok) {
 						alert(resp.error.message)
+						this.$router.push({ name: 'home' })
 						return
 					}
 

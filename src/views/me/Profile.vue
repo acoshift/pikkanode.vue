@@ -35,9 +35,9 @@
 								Delete
 							</span>
 							&nbsp;
-							<a href class="link">
+							<router-link :to="{ name: 'me.update-photo', params: { id: w.id } }" class="link">
 								Edit
-							</a>
+							</router-link>
 						</div>
 					</div>
 				</template>
