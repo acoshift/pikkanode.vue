@@ -23,6 +23,11 @@ auth.check = () =>
 const me = {}
 me.profile = () =>
 	invoke('/me/profile')
+me.uploadProfilePhoto = (photo) => {
+	const form = new FormData()
+	form.append('photo', photo)
+	return invoke('/me/uploadProfilePhoto', form)
+}
 
 const api = {
 	auth,
