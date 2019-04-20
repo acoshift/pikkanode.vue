@@ -132,25 +132,26 @@ export default {
 		> img {
 			object-fit: contain;
 		}
+	}
 
-		.favorite {
-			position: absolute;
-			top: .5rem;
-			right: .5rem;
-			fill: gray;
-			opacity: .3;
-			z-index: 1;
-			width: 2rem;
-			transition: all 0.16s ease;
+	.favorite {
+		position: absolute;
+		top: .5rem;
+		right: .5rem;
+		fill: gray;
+		opacity: .3;
+		z-index: 1;
+		width: 2rem;
+		transition: all 0.16s ease;
+		cursor: pointer;
 
-			&:hover {
-				transform: translate3d(0, -2px, 0);
-			}
+		&:hover {
+			transform: translate3d(0, -2px, 0);
+		}
 
-			&.active {
-				fill: rgb(224, 34, 123);
-				opacity: 1;
-			}
+		&.active {
+			fill: rgb(224, 34, 123);
+			opacity: 1;
 		}
 	}
 
