@@ -5,20 +5,12 @@
 			<br>
 
 			<div class="profile">
-				<div v-if="photo" class="avatar-container">
-					<img class="avatar" :src="photo" height="200" @click="$refs.upload.click()">
-					<a href="#" class="link">Delete Avatar</a>
-				</div>
+				<img v-if="photo" class="avatar" :src="photo" height="200" @click="$refs.upload.click()">
 				<div v-else class="blank" @click="$refs.upload.click()">
 					<span>Click here to upload</span>
 				</div>
 				<input ref="upload" type="file" style="display: none" @change="upload">
-				<div class="info">
-					<h2>{{ username }}</h2>
-					<div>
-						<a href="#" class="link">Edit</a>
-					</div>
-				</div>
+				<h2>{{ username }}</h2>
 			</div>
 			<hr>
 
@@ -38,20 +30,29 @@
 						<p>detail: {{ w.detail }}</p>
 						<p>tags: {{ w.tags.join(',') }}</p>
 						<p>post at: {{ w.createdAt | datetime }}</p>
+						<div style="margin-top:.5rem;">
+							<a href class="link" style="color: red;">
+								Delete
+							</a>
+							&nbsp;
+							<a href class="link">
+								Edit
+							</a>
+						</div>
 					</div>
 				</template>
 				<p v-else>You don't have any photos</p>
 			</div>
 			<div v-else>
-				<div v-if="myFavoriteWorks.length > 0">
-					<div v-for="w in myFavoriteWorks" :key="w.id">
+				<template v-if="myFavoriteWorks.length > 0">
+					<div v-for="w in myFavoriteWorks" :key="w.id" class="card-work">
 						<img class="photo" :src="w.photo" height="200">
 						<p>name: {{ w.name }}</p>
 						<p>detail: {{ w.detail }}</p>
 						<p>tags: {{ w.tags.join(',') }}</p>
 						<p>post at: {{ w.createdAt | datetime }}</p>
 					</div>
-				</div>
+				</template>
 				<p v-else>You don't have any photos</p>
 			</div>
 		</div>
@@ -161,19 +162,8 @@ export default {
 			border: 3px dashed rgb(172, 172, 172);
 		}
 
-		.info {
+		h2 {
 			margin-left: 1rem;
-		}
-	}
-
-	.avatar-container {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-
-		.link {
-			margin-top: .5rem;
-			font-weight: 500;
 		}
 	}
 

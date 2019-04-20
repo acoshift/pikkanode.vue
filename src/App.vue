@@ -118,6 +118,7 @@ export default {
 		margin-right: 1rem;
 		margin-bottom: 1rem;
 		max-width: 15rem;
+		width: 15rem;
 		text-align: center;
 		cursor: pointer;
 		border: 1px solid transparent;
