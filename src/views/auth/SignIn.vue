@@ -4,8 +4,8 @@
 			<h1>Sign In</h1>
 			<br>
 			<form @submit.prevent="signIn">
-				<input v-model="username">
-				<input v-model="password" type="password">
+				<input v-model="username" placeholder="username">
+				<input v-model="password" type="password" placeholder="password">
 				<button>Sign In</button>
 			</form>
 		</div>
