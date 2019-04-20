@@ -1,14 +1,14 @@
 <template>
 	<div class="form-layout">
-        <div class="panel">
-            <h1>Sign Up</h1>
-            <br>
-            <form @submit.prevent="signUp">
-                <input v-model="username">
-                <input v-model="password" type="password">
-                <button>Sign Up</button>
-            </form>
-        </div>
+		<div class="panel">
+			<h1>Sign Up</h1>
+			<br>
+			<form @submit.prevent="signUp">
+				<input v-model="username">
+				<input v-model="password" type="password">
+				<button>Sign Up</button>
+			</form>
+		</div>
 	</div>
 </template>
 
@@ -41,9 +41,9 @@ export default {
 </script>
 
 <style>
-    .signup {
-        display: flex;
-        justify-content: center;
-        text-align: center;
-    }
+	.signup {
+		display: flex;
+		justify-content: center;
+		text-align: center;
+	}
 </style>

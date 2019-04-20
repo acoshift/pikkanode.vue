@@ -1,14 +1,14 @@
 <template>
 	<div class="form-layout">
-        <div class="panel">
-            <h1>Sign In</h1>
-            <br>
-            <form @submit.prevent="signIn">
-                <input v-model="username">
-                <input v-model="password" type="password">
-                <button>Sign In</button>
-            </form>
-        </div>
+		<div class="panel">
+			<h1>Sign In</h1>
+			<br>
+			<form @submit.prevent="signIn">
+				<input v-model="username">
+				<input v-model="password" type="password">
+				<button>Sign In</button>
+			</form>
+		</div>
 	</div>
 </template>
 
