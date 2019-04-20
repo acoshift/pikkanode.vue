@@ -31,9 +31,9 @@
 						<p>tags: {{ w.tags.join(',') }}</p>
 						<p>post at: {{ w.createdAt | datetime }}</p>
 						<div style="margin-top:.5rem;">
-							<a href class="link" style="color: red;">
+							<span class="link" style="color: red;" @click="removeWork(w.id)">
 								Delete
-							</a>
+							</span>
 							&nbsp;
 							<a href class="link">
 								Edit
@@ -135,6 +135,21 @@ export default {
 					}
 
 					this.myFavoriteWorks = resp.result.list
+				})
+		},
+		removeWork (id) {
+			if (!confirm('are you sure?')) {
+				return
+			}
+
+			this.$api.me.removeWork({ id })
+				.then((resp) => {
+					if (!resp.ok) {
+						alert(resp.error.message)
+						return
+					}
+
+					this.fetchMyWorks()
 				})
 		}
 	}
