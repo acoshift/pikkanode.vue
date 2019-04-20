@@ -24,7 +24,7 @@
 
             <div v-if="tab === 'myPhotos'" class="photo-container">
                 <template v-if="myWorks.length > 0">
-                    <div v-for="w in myWorks" :key="w.id" class="card-photo">
+                    <div v-for="w in myWorks" :key="w.id" class="card-work">
                         <img class="photo" :src="w.photo" height="200">
                         <p>name: {{ w.name }}</p>
                         <p>detail: {{ w.detail }}</p>
