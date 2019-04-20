@@ -36,6 +36,8 @@ me.getMyFavoriteWorks = ({ paginate }) =>
 const work = {}
 work.get = ({ id }) =>
 	invoke('/work/get', { id })
+work.postComment = ({ id, content }) =>
+	invoke('/work/postComment', { id, content })
 
 const discovery = {}
 discovery.getWorks = ({ paginate }) =>

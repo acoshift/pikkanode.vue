@@ -20,7 +20,7 @@
 		</nav>
 
         <div class="content-container">
-		    <router-view />
+            <router-view />
         </div>
 	</div>
 </template>

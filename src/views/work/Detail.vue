@@ -3,7 +3,7 @@
 		<h1>Photo Detail</h1>
 
         <div class="photo-container">
-		    <img v-if="photo" class="photo" :src="photo">
+			<img v-if="photo" class="photo" :src="photo">
         </div>
         <br>
 
@@ -31,6 +31,12 @@
 			</div>
 		</div>
 		<p v-else>this photo doesn't have any comment</p>
+
+		<!-- comment section -->
+		<form @submit.prevent="submitComment">
+			<textarea v-model="comment" placeholder="type to comment..."></textarea>
+			<button>post</button>
+		</form>
 	</div>
 </template>
 
@@ -45,7 +51,8 @@ export default {
 			tags: [],
 			username: '',
 			createdAt: '',
-			comments: []
+			comments: [],
+			comment: ''
 		}
 	},
 	created () {
@@ -69,6 +76,17 @@ export default {
 					this.comments = resp.result.comments
 				})
 		},
+		submitComment () {
+			this.$api.work.postComment({ id: `${this.$route.params.id}`, content: this.comment })
+				.then((resp) => {
+					if (!resp.ok) {
+						alert(resp.error.message)
+						return
+					}
+
+					this.reload()
+				})
+		}
 	}
 }
 </script>
