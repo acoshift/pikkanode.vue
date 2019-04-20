@@ -5,6 +5,7 @@
 				<img src="https://github.com/panotza/pikkanode/blob/master/pikkanode.png?raw=true" alt="pickanode">
 			</router-link>
 			<div>
+				<router-link :to="{ name: 'me.create-photo' }">Create new photo</router-link>
 				<router-link :to="{ name: 'me.profile' }">Profile</router-link>
 				<span @click="signOut">Sign Out</span>
 			</div>

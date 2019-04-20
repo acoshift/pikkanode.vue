@@ -3,7 +3,7 @@
 		<div class="panel fluid">
 			<h1>Discovery</h1>
 			<div v-if="discoveryWorks.length > 0" class="container">
-				<router-link tag="div" :to="{ name: 'work.get', params: { id: w.id } }" v-for="w in discoveryWorks" :key="w.id" class="card-work">
+				<router-link tag="div" :to="{ name: 'photo.get', params: { id: w.id } }" v-for="w in discoveryWorks" :key="w.id" class="card-work">
 					<img class="photo" :src="w.photo" height="200">
 					<p>name: {{ w.name }}</p>
 					<p>detail: {{ w.detail }}</p>

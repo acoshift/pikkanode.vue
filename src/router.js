@@ -54,9 +54,15 @@ const router = new Router({
 			beforeEnter: signedInGuard
 		},
 		{
-			path: '/work/:id',
-			name: 'work.get',
-			component: () => import('./views/work/Detail')
+			path: '/me/create-photo',
+			name: 'me.create-photo',
+			component: () => import('./views/me/CreatePhoto'),
+			beforeEnter: signedInGuard
+		},
+		{
+			path: '/photo/:id',
+			name: 'photo.get',
+			component: () => import('./views/photo/Detail')
 		},
 		{
 			path: '*',
