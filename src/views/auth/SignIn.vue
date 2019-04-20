@@ -1,7 +1,8 @@
 <template>
-	<div class="signin">
+	<div class="form-layout">
         <div class="panel">
-            <h4>Sign In</h4>
+            <h1>Sign In</h1>
+            <br>
             <form @submit.prevent="signIn">
                 <input v-model="username">
                 <input v-model="password" type="password">
@@ -38,11 +39,4 @@ export default {
 }
 </script>
 
-<style>
-    .signin {
-        display: flex;
-        justify-content: center;
-        text-align: center;
-    }
-</style>
 

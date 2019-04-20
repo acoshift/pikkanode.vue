@@ -1,7 +1,8 @@
 <template>
-	<div class="signup">
+	<div class="form-layout">
         <div class="panel">
-            <h4>Sign Up</h4>
+            <h1>Sign Up</h1>
+            <br>
             <form @submit.prevent="signUp">
                 <input v-model="username">
                 <input v-model="password" type="password">
