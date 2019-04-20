@@ -1,7 +1,9 @@
 <template>
-  <div class="home">
-      Home
-  </div>
+    <div class="home">
+        <div class="panel fluid">
+            Home
+        </div>
+    </div>
 </template>
 
 <script>
@@ -10,3 +12,10 @@ export default {
 	components: {}
 }
 </script>
+
+<style>
+    .home {
+
+    }
+</style>
+

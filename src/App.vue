@@ -19,7 +19,9 @@
             </div>
 		</nav>
 
-		<router-view />
+        <div class="content-container">
+		    <router-view />
+        </div>
 	</div>
 </template>
 
@@ -64,7 +66,7 @@ export default {
         justify-content: space-between;
         height: var(--navbar-height);
         padding: 0 1.5rem;
-        background: #2844ad;
+        background: hsl(227, 62%, 42%);
         color: white;
     }
 
@@ -87,9 +89,25 @@ export default {
 
     .content-container {
         display: flex;
-        justify-content: center;
+        align-items: flex-start;
         flex-wrap: wrap;
         padding: 2rem;
+        background-color: hsl(227, 62%, 52%);
+        min-height: calc(100vh - var(--navbar-height));
+    }
+
+    .content-container > * {
+        width: 100%;
+    }
+
+    .panel {
+        background: white;
+        border-radius: 3px;
+        padding: 1.5rem;
+    }
+
+    .panel.fluid {
+        width: 100%;
     }
 
     .card-work {

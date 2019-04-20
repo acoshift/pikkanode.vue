@@ -1,11 +1,13 @@
 <template>
-	<div>
-		Sign In
-		<form @submit.prevent="signIn">
-			<input v-model="username">
-			<input v-model="password" type="password">
-			<button>Sign In</button>
-		</form>
+	<div class="signin">
+        <div class="panel">
+            <h4>Sign In</h4>
+            <form @submit.prevent="signIn">
+                <input v-model="username">
+                <input v-model="password" type="password">
+                <button>Sign In</button>
+            </form>
+        </div>
 	</div>
 </template>
 
@@ -35,3 +37,12 @@ export default {
 	}
 }
 </script>
+
+<style>
+    .signin {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+</style>
+
