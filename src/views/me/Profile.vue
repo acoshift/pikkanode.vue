@@ -15,36 +15,36 @@
             <hr>
 
             <strong>
-                <span @click="tab = 'myWorks'" :class="{'active': tab === 'myWorks'}" class="link">My Works</span> |
-                <span @click="tab = 'myFavoriteWorks'" :class="{'active': tab === 'myFavoriteWorks'}" class="link">My Favorite Works</span>
+                <span @click="tab = 'myPhotos'" :class="{'active': tab === 'myPhotos'}" class="link">My Photos</span> |
+                <span @click="tab = 'myFavoritePhotos'" :class="{'active': tab === 'myFavoritePhotos'}" class="link">My Favorite Photos</span>
             </strong>
             <br>
             <br>
             <br>
 
-            <div v-if="tab === 'myWorks'" class="work-container">
-                <template v-if="myWorks.length > 0">
-                    <div v-for="w in myWorks" :key="w.id" class="card-work">
+            <div v-if="tab === 'myPhotos'" class="photo-container">
+                <template v-if="myPhotos.length > 0">
+                    <div v-for="w in myPhotos" :key="w.id" class="card-photo">
                         <img class="photo" :src="w.photo" height="200">
                         <p>name: {{ w.name }}</p>
                         <p>detail: {{ w.detail }}</p>
                         <p>tags: {{ w.tags.join(',') }}</p>
-                        <p>post at: {{ w.createdAt }}</p>
+                        <p>post at: {{ w.createdAt | datetime }}</p>
                     </div>
                 </template>
-                <p v-else>You don't have any works</p>
+                <p v-else>You don't have any photos</p>
             </div>
             <div v-else>
-                <div v-if="myFavoriteWorks.length > 0">
-                    <div v-for="work in myFavoriteWorks" :key="work.id">
-                        <img class="photo" :src="work.photo" height="200">
+                <div v-if="myFavoritePhotos.length > 0">
+                    <div v-for="photo in myFavoritePhotos" :key="photo.id">
+                        <img class="photo" :src="photo.photo" height="200">
                         <p>name: {{ w.name }}</p>
                         <p>detail: {{ w.detail }}</p>
                         <p>tags: {{ w.tags.join(',') }}</p>
-                        <p>post at: {{ w.createdAt }}</p>
+                        <p>post at: {{ w.createdAt | datetime }}</p>
                     </div>
                 </div>
-                <p v-else>You don't have any works</p>
+                <p v-else>You don't have any photos</p>
             </div>
         </div>
 	</div>
@@ -57,15 +57,15 @@ export default {
 		return {
 			username: '',
 			photo: '',
-			myWorks: [],
-			myFavoriteWorks: [],
-			tab: 'myWorks'
+			myPhotos: [],
+			myFavoritePhotos: [],
+			tab: 'myPhotos'
 		}
 	},
 	created () {
 		this.reload()
-		this.fetchMyWorks()
-		this.fetchMyFavoriteWorks()
+		this.fetchMyPhotos()
+		this.fetchMyFavoritePhotos()
 	},
 	methods: {
 		reload () {
@@ -96,7 +96,7 @@ export default {
 					this.reload()
 				})
 		},
-		fetchMyWorks () {
+		fetchMyPhotos () {
 			this.$api.me.getMyWorks({
 				paginate: {
 					page: 1,
@@ -109,11 +109,11 @@ export default {
 						return
 					}
 
-					this.myWorks = resp.result.list
+					this.myPhotos = resp.result.list
 				})
 		},
-		fetchMyFavoriteWorks () {
-			this.$api.me.getMyFavoriteWorks({
+		fetchMyFavoritePhotos () {
+			this.$api.me.getMyFavoritePhotos({
 				paginate: {
 					page: 1,
 					perPage: 20
@@ -125,7 +125,7 @@ export default {
 						return
 					}
 
-					this.myFavoriteWorks = resp.result.list
+					this.myFavoritePhotos = resp.result.list
 				})
 		}
 	}
@@ -158,7 +158,7 @@ export default {
         }
     }
 
-    .work-container {
+    .photo-container {
         display: flex;
         align-items: flex-start;
         flex-wrap: wrap;
