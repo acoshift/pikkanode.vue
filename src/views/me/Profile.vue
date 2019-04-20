@@ -15,14 +15,14 @@
 			<hr>
 
 			<strong>
-				<span @click="changeTab('myPhotos')" :class="{'active': tab === 'myPhotos'}" class="link">My Photos</span> |
+				<span @click="changeTab('myPhotos')" :class="{'active': tab !== 'myFavoritePhotos'}" class="link">My Photos</span> |
 				<span @click="changeTab('myFavoritePhotos')" :class="{'active': tab === 'myFavoritePhotos'}" class="link">My Favorite Photos</span>
 			</strong>
 			<br>
 			<br>
 			<br>
 
-			<div v-if="tab === 'myPhotos'" class="photo-container">
+			<div v-if="tab !== 'myFavoritePhotos'" class="photo-container">
 				<template v-if="myWorks.length > 0">
 					<div v-for="w in myWorks" :key="w.id" class="card-work">
 						<img class="photo" :src="w.photo" height="200">
