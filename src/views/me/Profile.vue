@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="panel">
-			<h1>Profile {{ tab }}</h1>
+			<h1>Profile</h1>
 			<br>
 
 			<div class="profile">
@@ -51,6 +51,11 @@
 						<p>detail: {{ w.detail }}</p>
 						<p>tags: {{ w.tags.join(',') }}</p>
 						<p>post at: {{ w.createdAt | datetime }}</p>
+						<div style="margin-top:.5rem;">
+							<span class="link" style="color: red;" @click="unfavorite(w.id)">
+								Unfavorite
+							</span>
+						</div>
 					</div>
 				</template>
 				<p v-else>You don't have any photos</p>
@@ -150,6 +155,24 @@ export default {
 					}
 
 					this.fetchMyWorks()
+				})
+		},
+		unfavorite (id) {
+			if (!confirm('are you sure?')) {
+				return
+			}
+
+			this.$api.work.favorite({ id: `${id}`, favorite: false })
+				.then((resp) => {
+					if (!resp.ok) {
+						alert(resp.error.message)
+						return
+					}
+
+					this.fetchMyFavoriteWorks()
+				})
+				.catch((e) => {
+					alert(e.message)
 				})
 		},
 		changeTab (tab) {
