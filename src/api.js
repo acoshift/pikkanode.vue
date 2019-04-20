@@ -37,10 +37,15 @@ const work = {}
 work.get = ({ id }) =>
 	invoke('/work/get', { id })
 
+const discovery = {}
+discovery.getWorks = ({ paginate }) =>
+	invoke('/discovery/getWorks', { paginate })
+
 const api = {
 	auth,
 	me,
-	work
+	work,
+	discovery
 }
 
 Vue.prototype.$api = api
