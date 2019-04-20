@@ -115,12 +115,14 @@ export default {
 	}
 
 	.card-work {
+		position: relative;
 		margin-right: 1rem;
 		margin-bottom: 1rem;
-		max-width: 15rem;
-		width: 15rem;
+		max-width: 14rem;
+		width: 14rem;
 		text-align: center;
 		cursor: pointer;
+		padding: .5rem;
 		border: 1px solid transparent;
 
 		&:hover {
@@ -129,6 +131,26 @@ export default {
 
 		> img {
 			object-fit: contain;
+		}
+
+		.favorite {
+			position: absolute;
+			top: .5rem;
+			right: .5rem;
+			fill: gray;
+			opacity: .3;
+			z-index: 1;
+			width: 2rem;
+			transition: all 0.16s ease;
+
+			&:hover {
+				transform: translate3d(0, -2px, 0);
+			}
+
+			&.active {
+				fill: rgb(224, 34, 123);
+				opacity: 1;
+			}
 		}
 	}
 
