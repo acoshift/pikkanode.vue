@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="panel">
-			<h1>Profile</h1>
+			<h1>Profile {{ tab }}</h1>
 			<br>
 
 			<div class="profile">
@@ -15,8 +15,8 @@
 			<hr>
 
 			<strong>
-				<span @click="tab = 'myPhotos'" :class="{'active': tab === 'myPhotos'}" class="link">My Photos</span> |
-				<span @click="tab = 'myFavoritePhotos'" :class="{'active': tab === 'myFavoritePhotos'}" class="link">My Favorite Photos</span>
+				<span @click="changeTab('myPhotos')" :class="{'active': tab === 'myPhotos'}" class="link">My Photos</span> |
+				<span @click="changeTab('myFavoritePhotos')" :class="{'active': tab === 'myFavoritePhotos'}" class="link">My Favorite Photos</span>
 			</strong>
 			<br>
 			<br>
@@ -68,7 +68,7 @@ export default {
 			photo: '',
 			myWorks: [],
 			myFavoriteWorks: [],
-			tab: 'myPhotos'
+			tab: this.$route.query.tab || 'myPhotos'
 		}
 	},
 	created () {
@@ -151,6 +151,10 @@ export default {
 
 					this.fetchMyWorks()
 				})
+		},
+		changeTab (tab) {
+			this.$router.replace({ name: 'me.profile', query: { tab } })
+			this.tab = tab
 		}
 	}
 }
