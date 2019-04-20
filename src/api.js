@@ -33,9 +33,13 @@ me.getMyWorks = ({ paginate }) =>
 me.getMyFavoriteWorks = ({ paginate }) =>
 	invoke('/me/getMyFavoriteWorks', { paginate })
 
+work.get = ({ id }) =>
+	invoke('/work/get', { id })
+
 const api = {
 	auth,
-	me
+	me,
+	work
 }
 
 Vue.prototype.$api = api
