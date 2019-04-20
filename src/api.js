@@ -33,6 +33,7 @@ me.getMyWorks = ({ paginate }) =>
 me.getMyFavoriteWorks = ({ paginate }) =>
 	invoke('/me/getMyFavoriteWorks', { paginate })
 
+const work = {}
 work.get = ({ id }) =>
 	invoke('/work/get', { id })
 
