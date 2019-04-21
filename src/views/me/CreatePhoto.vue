@@ -13,7 +13,7 @@
 				</div>
 				<input v-model="name" placeholder="name">
 				<input v-model="detail" placeholder="detail">
-				<input v-model="tags" placeholder="tags">
+				<input v-model="tags" placeholder="tags ex. animal,world,forest">
 				<button>Create</button>
 			</form>
 		</div>
