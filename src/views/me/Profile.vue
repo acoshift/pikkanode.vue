@@ -15,8 +15,8 @@
 			<hr>
 
 			<strong>
-				<span @click="changeTab('myPhotos')" :class="{'active': tab !== 'myFavoritePhotos'}" class="link">My Photos</span> |
-				<span @click="changeTab('myFavoritePhotos')" :class="{'active': tab === 'myFavoritePhotos'}" class="link">My Favorite Photos</span>
+				<router-link :to="{ query: { tab: 'myPhotos' } }" :class="{'active': tab !== 'myFavoritePhotos'}" class="link" replace>My Photos</router-link> |
+				<router-link :to="{ query: { tab: 'myFavoritePhotos' } }" :class="{'active': tab === 'myFavoritePhotos'}" class="link" replace>My Favorite Photos</router-link>
 			</strong>
 			<br>
 			<br>
@@ -72,8 +72,12 @@ export default {
 			username: '',
 			photo: '',
 			myWorks: [],
-			myFavoriteWorks: [],
-			tab: this.$route.query.tab || 'myPhotos'
+			myFavoriteWorks: []
+		}
+	},
+	computed: {
+		tab () {
+			return this.$route.query.tab || 'myPhotos'
 		}
 	},
 	created () {
@@ -162,7 +166,7 @@ export default {
 				return
 			}
 
-			this.$api.work.favorite({ id: `${id}`, favorite: false })
+			this.$api.work.favorite({ id: id, favorite: false })
 				.then((resp) => {
 					if (!resp.ok) {
 						alert(resp.error.message)
@@ -174,10 +178,6 @@ export default {
 				.catch((e) => {
 					alert(e.message)
 				})
-		},
-		changeTab (tab) {
-			this.$router.replace({ name: 'me.profile', query: { tab } })
-			this.tab = tab
 		}
 	}
 }
