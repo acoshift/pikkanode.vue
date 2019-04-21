@@ -34,6 +34,16 @@ me.getMyFavoriteWorks = ({ paginate }) =>
 	invoke('/me/getMyFavoriteWorks', { paginate })
 me.removeWork = ({ id }) =>
 	invoke('/me/removeWork', { id })
+me.createWork = ({ name, detail, photo, tags }) => {
+	const form = new FormData()
+	form.append('name', name)
+	form.append('detail', detail)
+	form.append('photo', photo)
+	tags.forEach((t) => {
+		form.append('tags', t)
+	})
+	return invoke('/me/createWork', form)
+}
 me.updateWork = ({ id, name, detail, tags }) =>
 	invoke('/me/updateWork', { id, name, detail, tags })
 
